@@ -2,6 +2,10 @@
 
 <%= render @team %>
 
+
+<% @team.players.each do |player| %>
+    <%= link_to player.name , player_path(player.id) %>
+<% end %>
 <div>
   <%= link_to "Edit this team", edit_team_path(@team) %> |
   <%= link_to "Back to teams", teams_path %>
