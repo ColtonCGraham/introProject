@@ -16,15 +16,20 @@ team_names = CSV.parse(csv_data, headers: true)
 # products = CSV.parse(csv_data, headers: true, encoding: 'iso-8859-1')
 
 team_names.each do |team|
-  spo = Sport.find_or_create_by(name: team_names['Sport'])
+  spo = Sport.find_or_create_by(name: team['Sport'])
   Team.create!(name: team['Team Name'],
                sport: spo)
 end
 
 Team.all.each do |t|
-  3.times do
+  6.times do
     n = [Faker::Name.first_name, Faker::Name.last_name].join(' ')
     player = Player.find_or_create_by(name: n)
     t.players << player
+  end
+
+  2.times do
+    r = Player.all.sample
+    t.players << r unless t.players.include?(r)
   end
 end
