@@ -1,16 +1,17 @@
 require 'csv'
 require 'faker'
 
-Team.destroy_all
-Sport.destroy_all
-Player.destroy_all
-Match.destroy_all
-Location.destroy_all
+require 'database_cleaner'
 
+DatabaseCleaner.clean_with(:truncation)
 csv_file = Rails.root.join('db/teams.csv')
 csv_data = File.read(csv_file)
 
 team_names = CSV.parse(csv_data, headers: true)
+
+csv_file2 = Rails.root.join('db/Community_Centre.csv')
+csv_data2 = File.read(csv_file2)
+centres = CSV.parse(csv_data2, headers: true)
 
 # If CSV was created by Excel in Windows you may also need to set an encoding type:
 # products = CSV.parse(csv_data, headers: true, encoding: 'iso-8859-1')
@@ -32,4 +33,14 @@ Team.all.each do |t|
     r = Player.all.sample
     t.players << r unless t.players.include?(r)
   end
+end
+
+centres.each do |c|
+  l = Location.find_or_create_by(name: c['Name'], address: c['Address'], coordinates: c['Location 1'])
+  t = Team.all.sample
+  s = Sport.all.sample
+  m = Match.create!(sport: s,
+                    location: l)
+
+  puts m
 end

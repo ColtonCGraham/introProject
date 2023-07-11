@@ -73,3 +73,4 @@ end
 
 gem "faker", "~> 3.2"
 gem 'kaminari'
+gem 'database_cleaner'

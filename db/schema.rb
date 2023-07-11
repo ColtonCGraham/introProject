@@ -10,18 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_11_001836) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_11_024445) do
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.string "coordinates"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "address"
   end
 
   create_table "matches", force: :cascade do |t|
     t.string "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "location_id", null: false
+    t.integer "sport_id", null: false
+    t.index ["location_id"], name: "index_matches_on_location_id"
+    t.index ["sport_id"], name: "index_matches_on_sport_id"
   end
 
   create_table "players", force: :cascade do |t|
@@ -49,5 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_11_001836) do
     t.index ["sport_id"], name: "index_teams_on_sport_id"
   end
 
+  add_foreign_key "matches", "locations"
+  add_foreign_key "matches", "sports"
   add_foreign_key "teams", "sports"
 end
