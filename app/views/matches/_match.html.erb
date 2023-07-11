@@ -1,4 +1,18 @@
 <div id="<%= dom_id match %>">
+
+  <p>
+    <strong>Match:</strong>
+    <%= match.teams[0].name %> <strong>VS</strong> <%= match.teams[1].name %>
+  </p>
+
+  <p>
+    <strong>League:</strong>
+    <%= match.sport.name %>
+  </p>
+  <p>
+    <strong>Location:</strong>
+    <%= match.location.name %>
+  </p>
   <p>
     <strong>Date:</strong>
     <%= match.date %>

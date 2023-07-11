@@ -1,7 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
+
+
 <%= render @match %>
 
+  <% @match.teams.each do |team| %>
+    <%= link_to team.name , team_path(team.id) %>
+  <% end %>
 <div>
   <%= link_to "Edit this match", edit_match_path(@match) %> |
   <%= link_to "Back to matches", matches_path %>

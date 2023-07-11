@@ -1,5 +1,5 @@
 class Match < ApplicationRecord
-  has_many :teams
+  has_and_belongs_to_many :teams
   belongs_to :sport
   belongs_to :location
 end

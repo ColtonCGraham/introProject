@@ -37,10 +37,11 @@ end
 
 centres.each do |c|
   l = Location.find_or_create_by(name: c['Name'], address: c['Address'], coordinates: c['Location 1'])
-  t = Team.all.sample
   s = Sport.all.sample
+  t = Team.where(sport: s).order('RANDOM()').limit(2)
   m = Match.create!(sport: s,
+                    date: Faker::Date.forward(days: 45),
                     location: l)
 
-  puts m
+  m.teams << t
 end

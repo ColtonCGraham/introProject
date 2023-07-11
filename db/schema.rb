@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_11_024445) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_11_041332) do
   create_table "locations", force: :cascade do |t|
     t.string "name"
     t.string "coordinates"
@@ -27,6 +27,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_11_024445) do
     t.integer "sport_id", null: false
     t.index ["location_id"], name: "index_matches_on_location_id"
     t.index ["sport_id"], name: "index_matches_on_sport_id"
+  end
+
+  create_table "matches_teams", id: false, force: :cascade do |t|
+    t.integer "match_id", null: false
+    t.integer "team_id", null: false
   end
 
   create_table "players", force: :cascade do |t|
