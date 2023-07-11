@@ -35,7 +35,8 @@ Team.all.each do |t|
   end
 end
 
-centres.each do |c|
+20.times do
+  c = centres[rand(centres.count)]
   l = Location.find_or_create_by(name: c['Name'], address: c['Address'], coordinates: c['Location 1'])
   s = Sport.all.sample
   t = Team.where(sport: s).order('RANDOM()').limit(2)

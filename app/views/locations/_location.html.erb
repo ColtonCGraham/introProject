@@ -8,8 +8,13 @@
     <%= location.address %>
   </p>
   <p>
-    <strong>Coordinates:</strong>
-    <%= location.coordinates %>
+    <% coords = location.coordinates.split(",")
+    long = coords[0].delete("()")
+    lat = coords[1].delete("()")
+    long = long.to_f.round(4)
+    lat =lat.to_f.round(4)%>
+
+    <img alt='Map failed to load' src='https://api.mapbox.com/styles/v1/mapbox/streets-v12/static/<%=lat%>,<%=long%>,14.40,0.00,0.00/300x200@2x?access_token=pk.eyJ1IjoiY29sdG9uY2dyYWhhbSIsImEiOiJjbGp5cXFpdHMwNzRnM21wNGZrd2s2cnAzIn0.k6v3M4KpDMTsi2TV6LnmCg' >
   </p>
 
 </div>
