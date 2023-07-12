@@ -23,7 +23,7 @@ team_names.each do |team|
 end
 
 Team.all.each do |t|
-  6.times do
+  8.times do
     n = [Faker::Name.first_name, Faker::Name.last_name].join(' ')
     player = Player.find_or_create_by(name: n)
     t.players << player
@@ -35,7 +35,7 @@ Team.all.each do |t|
   end
 end
 
-20.times do
+30.times do
   c = centres[rand(centres.count)]
   l = Location.find_or_create_by(name: c['Name'], address: c['Address'], coordinates: c['Location 1'])
   s = Sport.all.sample
