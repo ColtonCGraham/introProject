@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,12 +7,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%
-     placeHolderText = [
-    "Search for a player",
-    "Search for a team",
-    ]
 
+    <%
      searchType = [
     "/searchplayers",
     "/searchteams"
@@ -18,18 +16,34 @@
     %>
 
 
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <form action = <%=searchType[0]%>>
-      <input text ="text" name = "q" placeholder = "<%=placeHolderText[0]%>" aria-label = "<%=placeHolderText[0]%>">
 
+  <body>
+    <form id = "f" action = <%=searchType[0]%>>
+      <input text ="text" name = "q" placeholder = "Search" aria-label = "Search">
+      <%= select("post", "person_id",["Players","Teams"],{},:onChange=>"handler();") %>
+      <label for="post">Search Category:</label>
       <button type = "submit"> Search </button>
     </form>
+
+
     <%= yield %>
   </body>
-</html>
 
+ <script>
+ function handler(){
+  drop = document.getElementById("post_person_id").value;
+  if(drop == "Teams"){
+    drop ="/searchteams";
+  }
+  if(drop == "Players"){
+    drop ="/searchplayers";
+  }
+  document.getElementById("f").action = drop;
+  console.log(drop);
+ }
+</script>
+</html>
