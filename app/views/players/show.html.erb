@@ -3,11 +3,16 @@
 <%= render @player %>
 
 <div>
+  <h4>Current Teams:</h4>
   <% @player.teams.each do |team| %>
+  <p>
     <%= link_to team.name , team_path(team.id) %>
+    -
+    <%= link_to team.sport.name, sport_path(team.sport.id)%>
+  </p>
   <% end %>
-  <%= link_to "Edit this player", edit_player_path(@player) %> |
-  <%= link_to "Back to players", players_path %>
+    <%= link_to "Back to players", players_path %>
+  <%#= link_to "Edit this player", edit_player_path(@player) %> |
 
-  <%= button_to "Destroy this player", @player, method: :delete %>
+  <%#= button_to "Destroy this player", @player, method: :delete %>
 </div>
