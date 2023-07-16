@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   get 'searchteams', to: 'teams#search'
   get 'searchplayers', to: 'players#search'
   # Defines the root path route ("/")
-  # root "articles#index"
+  get 'about', to: 'about#index'
+  root 'matches#index'
 end
