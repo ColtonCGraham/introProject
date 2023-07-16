@@ -1,7 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Players</h1>
-
+<%= paginate @players %>
 <div id="players">
   <% @players.each do |player| %>
     <p>
