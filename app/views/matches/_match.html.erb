@@ -2,16 +2,17 @@
 
   <p>
     <strong>Match:</strong>
-    <%= match.teams[0].name %> <strong>VS</strong> <%= match.teams[1].name %>
+
+    <%= link_to match.teams[0].name, team_path(match.teams[0].id) %> <strong>VS</strong>
+    <%= link_to match.teams[1].name, team_path(match.teams[1].id) %>
   </p>
 
   <p>
     <strong>League:</strong>
-    <%= match.sport.name %>
+    <%= link_to match.sport.name, sport_path(match.sport.id) %>
   </p>
   <p>
-    <strong>Location:</strong>
-    <%= match.location.name %>
+    <%=render match.location %>
   </p>
   <p>
     <strong>Date:</strong>
