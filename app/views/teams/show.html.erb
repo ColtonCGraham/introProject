@@ -1,17 +1,19 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @team %>
-
+<p>
+<b> League:</b>  <%= link_to @team.sport.name , sport_path(@team.sport.id)%>
+</p>
 
 <% @team.players.each do |player| %>
+  <p>
     <%= link_to player.name , player_path(player.id) %>
+    </p>
 <% end %>
-<p>
-Sport: <%=@team.sport.name %>
-</p>
+
 <div>
-  <%= link_to "Edit this team", edit_team_path(@team) %> |
+  <%#= link_to "Edit this team", edit_team_path(@team) %> |
   <%= link_to "Back to teams", teams_path %>
 
-  <%= button_to "Destroy this team", @team, method: :delete %>
+  <%#= button_to "Destroy this team", @team, method: :delete %>
 </div>

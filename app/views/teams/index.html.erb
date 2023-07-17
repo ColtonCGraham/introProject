@@ -4,11 +4,10 @@
 
 <div id="teams">
   <% @teams.each do |team| %>
-    <%= render team %>
     <p>
-      <%= link_to "Show this team", team %>
+      <%= link_to team.name, team %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New team", new_team_path %>
+<%#= link_to "New team", new_team_path %>
